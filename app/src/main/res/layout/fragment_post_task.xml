@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Title" />
+
+    <EditText
+        android:id="@+id/edt1"
+        android:layout_width="305dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:hint="What do you need done? "
+        tools:layout_editor_absoluteX="23dp" />
+
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Description" />
+
+
+    <EditText
+        android:id="@+id/edt2"
+        android:layout_width="305dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:hint="Add More Details" />
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Amount of Order" />
+
+    <EditText
+        android:id="@+id/edt3"
+        android:layout_width="305dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:hint="Amount of the Item (if any)" />
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Extra Charges willing to Pay" />
+
+    <EditText
+        android:id="@+id/edt4"
+        android:layout_width="305dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:hint="Amount willing to Pay to the Tasker" />
+
+    <TextView
+        android:id="@+id/tv5"
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:drawableEnd="@drawable/ic_add_circle_black_24dp"
+        android:text="Attachments (If Any)" />
+
+    <TextView
+        android:id="@+id/tv6"
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Location" />
+
+    <EditText
+        android:id="@+id/edt5"
+        android:layout_width="305dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:hint="Enter the Location" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="Post Task"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+
+</LinearLayout>
