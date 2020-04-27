@@ -213,7 +213,6 @@ public class MapFragment extends Fragment {
 
                             getAddress(latitude, longitude);
                             latLng = new LatLng(latitude, longitude);
-                            FirebaseDatabase.getInstance().getReference().child("users")
                             addMarker(gMap, latLng, finalAddress);
                         }
                     }

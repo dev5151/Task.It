@@ -34,7 +34,7 @@ public class FetchedTaskAdapter extends RecyclerView.Adapter<FetchedTaskAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull FetchedTaskAdapter.FetchedTaskViewHolder holder, int position) {
-        final Tasks task = taskList.get(position);
+        Tasks task = taskList.get(position);
         holder.title.setText(task.getTitle());
         /*holder.amount.setText(task.getBasePrice());
         holder.extra.setText(task.getAmount());
