@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -15,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -28,10 +34,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Title" />
+        android:text="Title"
+        android:textColor="@color/black" />
 
     <EditText
-        android:id="@+id/edt1"
+        android:id="@+id/edt_title"
         android:layout_width="305dp"
         android:layout_height="43dp"
         android:layout_marginStart="16dp"
@@ -46,11 +53,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Description" />
+        android:text="Description"
+        android:textColor="@color/black" />
 
 
     <EditText
-        android:id="@+id/edt2"
+        android:id="@+id/edt_description"
         android:layout_width="305dp"
         android:layout_height="43dp"
         android:layout_marginStart="16dp"
@@ -63,10 +71,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Amount of Order" />
+        android:text="Amount of Order"
+        android:textColor="@color/black" />
 
     <EditText
-        android:id="@+id/edt3"
+        android:id="@+id/edt_amt"
         android:layout_width="305dp"
         android:layout_height="43dp"
         android:layout_marginStart="16dp"
@@ -79,10 +88,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Extra Charges willing to Pay" />
+        android:text="Extra Charges willing to Pay"
+        android:textColor="@color/black" />
 
     <EditText
-        android:id="@+id/edt4"
+        android:id="@+id/edt_extra"
         android:layout_width="305dp"
         android:layout_height="43dp"
         android:layout_marginStart="16dp"
@@ -90,14 +100,25 @@
         android:hint="Amount willing to Pay to the Tasker" />
 
     <TextView
-        android:id="@+id/tv5"
+        android:id="@+id/tv_attachments"
         android:layout_width="305dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         android:drawableEnd="@drawable/ic_add_circle_black_24dp"
-        android:text="Attachments (If Any)" />
+        android:text="Attachments (If Any)"
+        android:textColor="@color/black" />
+
+
+    <ImageView
+        android:id="@+id/img_attachment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_launcher_foreground"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv6"
@@ -105,15 +126,41 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Location" />
+        android:text="Till Date"
+        android:textColor="@color/black" />
 
-    <EditText
-        android:id="@+id/edt5"
+    <TextView
+        android:id="@+id/tv_date"
         android:layout_width="305dp"
         android:layout_height="43dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:hint="Enter the Location" />
+        android:drawableEnd="@drawable/ic_date"
+        android:gravity="center_vertical"
+        android:hint="Select the date"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv7"
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Till Time"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="305dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:drawableEnd="@drawable/ic_time"
+        android:gravity="center_vertical"
+        android:hint="Select the Time"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -131,3 +178,5 @@
 
 
 </LinearLayout>
+
+</ScrollView>

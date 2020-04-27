@@ -43,6 +43,7 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:text="Your current location"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +27,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.dev5151.taskit.Activities.DashboardActivity;
+import com.dev5151.taskit.Activities.LocationActivity;
 import com.dev5151.taskit.R;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -40,6 +43,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -59,6 +64,7 @@ public class MapFragment extends Fragment {
     private Geocoder geocoder;
     private List<Address> addresses;
     String finalAddress;
+    private Button proceed;
     private static final int MY_PERMISSION_REQUEST_CODE = 1;
     private static final int PLAY_SERVICES = 1001;
 
@@ -73,6 +79,18 @@ public class MapFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
         initView(view);
+
+        proceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (finalAddress != null) {
+                    FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid()).child("location").setValue(finalAddress);
+                    startActivity(new Intent(getActivity(), DashboardActivity.class));
+                    getActivity().finish();
+                }
+            }
+        });
+
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
         try {
@@ -114,6 +132,7 @@ public class MapFragment extends Fragment {
         latLng = new LatLng(20.5937, 78.9629);
         geocoder = new Geocoder(getActivity(), Locale.getDefault());
         addresses = new ArrayList<>();
+        proceed = view.findViewById(R.id.proceed);
     }
 
     private void moveCamera(LatLng latLng, float zoom) {

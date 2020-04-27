@@ -138,6 +138,7 @@ public class OtpFragment extends Fragment {
                             Toast.makeText(getContext(), "LOGIN SUCCESS", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getActivity(), LocationActivity.class));
                             getActivity().finish();
+
                         } else {
                             Toast.makeText(getContext(), "LOGIN FAILURE", Toast.LENGTH_LONG).show();
 

@@ -36,23 +36,8 @@ public class PostedTasksAdapter extends RecyclerView.Adapter<PostedTasksAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull final PostedTaskHolder holder, final int position) {
-        final Tasks task=taskList.get(position);
-        holder.title.setText(task.getTitle());
-        holder.location.setText(task.getLocation());
-        holder.amount.setText(task.getAmount());
-        holder.description.setText(task.getDescription());
-        holder.basePrice.setText(task.getBasePrice());
 
 
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(),taskList.get(position).getUnixTime().toString(),Toast.LENGTH_LONG).show();
-                //DashboardActivity.getBottomNavBarControlInterface().goToTask(1,taskList.get(position).getUnixTime().toString());
-                Log.d("TIME", taskList.get(position).getUnixTime().toString());
-            }
-        });
 
     }
 

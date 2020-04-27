@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dev5151.taskit.Activities.DashboardActivity;
-import com.dev5151.taskit.Activities.MainActivity;
 import com.dev5151.taskit.R;
 import com.dev5151.taskit.models.Tasks;
 
@@ -23,9 +22,8 @@ public class FetchedTaskAdapter extends RecyclerView.Adapter<FetchedTaskAdapter.
 
 
     public FetchedTaskAdapter(Context context, ArrayList<Tasks> taskList) {
-        this.context=context;
-        this.taskList=taskList;
-
+        this.context = context;
+        this.taskList = taskList;
     }
 
     @NonNull
@@ -36,17 +34,17 @@ public class FetchedTaskAdapter extends RecyclerView.Adapter<FetchedTaskAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull FetchedTaskAdapter.FetchedTaskViewHolder holder, int position) {
-        final Tasks task=taskList.get(position);
+        final Tasks task = taskList.get(position);
         holder.title.setText(task.getTitle());
-        holder.amount.setText(task.getBasePrice());
+        /*holder.amount.setText(task.getBasePrice());
         holder.extra.setText(task.getAmount());
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+*/
+       /* holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DashboardActivity.getBottomNavBarControlInterface().goToTask(task.getFlag(),task.getCreatorId());
             }
-        });
+        });*/
     }
 
     @Override
@@ -55,13 +53,15 @@ public class FetchedTaskAdapter extends RecyclerView.Adapter<FetchedTaskAdapter.
     }
 
     public class FetchedTaskViewHolder extends RecyclerView.ViewHolder {
-        TextView title, amount,extra;
+        TextView title, amount, extra;
 
         public FetchedTaskViewHolder(@NonNull View itemView) {
             super(itemView);
-            title=itemView.findViewById(R.id.title);
-            amount=itemView.findViewById(R.id.amount);
-            extra=itemView.findViewById(R.id.extra);
+            title = itemView.findViewById(R.id.title);
+            amount = itemView.findViewById(R.id.amount);
+            extra = itemView.findViewById(R.id.extra);
         }
     }
+
+
 }

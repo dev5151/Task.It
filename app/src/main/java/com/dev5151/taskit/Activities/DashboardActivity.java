@@ -26,9 +26,10 @@ import com.google.android.material.internal.NavigationMenu;
 public class DashboardActivity extends AppCompatActivity {
 
     com.google.android.material.bottomnavigation.BottomNavigationView bottomNavigationView;
-    ConstraintLayout frame_container;
+
     private static BottomNavBarControlInterface flowControlInterface;
     FragmentManager fragmentManager;
+    public final static double AVERAGE_RADIUS_OF_EARTH_KM = 6371;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
