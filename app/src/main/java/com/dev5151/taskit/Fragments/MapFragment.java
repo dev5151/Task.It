@@ -85,6 +85,7 @@ public class MapFragment extends Fragment {
             public void onClick(View view) {
                 if (finalAddress != null) {
                     FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid()).child("location").setValue(finalAddress);
+                    FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid()).child("latLng").setValue(latLng);
                     startActivity(new Intent(getActivity(), DashboardActivity.class));
                     getActivity().finish();
                 }
@@ -212,6 +213,7 @@ public class MapFragment extends Fragment {
 
                             getAddress(latitude, longitude);
                             latLng = new LatLng(latitude, longitude);
+                            FirebaseDatabase.getInstance().getReference().child("users")
                             addMarker(gMap, latLng, finalAddress);
                         }
                     }
@@ -239,7 +241,7 @@ public class MapFragment extends Fragment {
             String country = addresses.get(0).getCountryCode();
             String postalCode = addresses.get(0).getPostalCode();
 
-            finalAddress = address + "," + area + "," + city + "," + country + "," + postalCode;
+            finalAddress = address + "," + area + "," + city;
 
         } catch (IOException e) {
             e.printStackTrace();

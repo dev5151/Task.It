@@ -1,5 +1,7 @@
 package com.dev5151.taskit.models;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.List;
 
 public class User {
@@ -7,6 +9,7 @@ public class User {
     private String name, email, phone, profilePic, wallet;
     private int rating;
     private String location;
+    private LatLng latLng;
     private List<String> taskGivenList;
     private List<String> taskDoneList;
 
@@ -14,7 +17,7 @@ public class User {
 
     }
 
-    public User(String name, String email, String phone, String profilePic, String wallet, int rating, String location, List<String> taskGivenList, List<String> taskDoneList) {
+    public User(String name, String email, String phone, String profilePic, String wallet, int rating, String location, LatLng latLng, List<String> taskGivenList, List<String> taskDoneList) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -22,6 +25,7 @@ public class User {
         this.wallet = wallet;
         this.rating = rating;
         this.location = location;
+        this.latLng = latLng;
         this.taskGivenList = taskGivenList;
         this.taskDoneList = taskDoneList;
     }
@@ -80,6 +84,14 @@ public class User {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public LatLng getLatLng() {
+        return latLng;
+    }
+
+    public void setLatLng(LatLng latLng) {
+        this.latLng = latLng;
     }
 
     public List<String> getTaskGivenList() {
