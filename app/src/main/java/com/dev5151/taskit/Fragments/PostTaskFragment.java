@@ -172,7 +172,7 @@ public class PostTaskFragment extends Fragment {
                 SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
                 String currentDate = df.format(c);
                 String currentTime = new SimpleDateFormat("HH:mm:ss aa", Locale.getDefault()).format(new Date());
-                myRef.child("tasks").child(unixTime).setValue(new Tasks(title, description, amount, extra, 0, FirebaseAuth.getInstance().getUid(), time, date, currentTime, currentDate, imageUrl)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                myRef.child("tasks").child(unixTime).setValue(new Tasks(title, description, amount, extra, 0, FirebaseAuth.getInstance().getUid(), date, time, currentTime, currentDate, imageUrl, unixTime)).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         edtTitle.setText(null);

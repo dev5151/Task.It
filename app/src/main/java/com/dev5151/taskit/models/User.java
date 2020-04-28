@@ -1,7 +1,5 @@
 package com.dev5151.taskit.models;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import java.util.List;
 
 public class User {
@@ -9,7 +7,7 @@ public class User {
     private String name, email, phone, profilePic, wallet;
     private int rating;
     private String location;
-    private LatLng latLng;
+    private com.dev5151.taskit.models.LatLng latLng;
     private List<String> taskGivenList;
     private List<String> taskDoneList;
 

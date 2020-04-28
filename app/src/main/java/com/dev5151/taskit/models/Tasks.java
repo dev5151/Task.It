@@ -12,12 +12,13 @@ public class Tasks {
     private String creation_time;
     private String creation_date;
     private String imgUrl;
+    private String unix;
 
     public Tasks() {
 
     }
 
-    public Tasks(String title, String desc, String item_price, String service_amt, Integer state, String uid, String till_date, String till_time, String creation_time, String creation_date,String imgUrl) {
+    public Tasks(String title, String desc, String item_price, String service_amt, Integer state, String uid, String till_date, String till_time, String creation_time, String creation_date, String imgUrl, String unix) {
         this.title = title;
         this.desc = desc;
         this.item_price = item_price;
@@ -28,7 +29,8 @@ public class Tasks {
         this.till_time = till_time;
         this.creation_time = creation_time;
         this.creation_date = creation_date;
-        this.imgUrl=imgUrl;
+        this.imgUrl = imgUrl;
+        this.unix = unix;
     }
 
     public String getTitle() {
@@ -117,5 +119,13 @@ public class Tasks {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getUnix() {
+        return unix;
+    }
+
+    public void setUnix(String unix) {
+        this.unix = unix;
     }
 }

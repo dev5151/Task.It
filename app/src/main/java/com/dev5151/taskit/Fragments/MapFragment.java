@@ -67,6 +67,7 @@ public class MapFragment extends Fragment {
     private Button proceed;
     private static final int MY_PERMISSION_REQUEST_CODE = 1;
     private static final int PLAY_SERVICES = 1001;
+    com.dev5151.taskit.models.LatLng locationLatLng;
 
     private LocationRequest locationRequest;
 
@@ -85,7 +86,7 @@ public class MapFragment extends Fragment {
             public void onClick(View view) {
                 if (finalAddress != null) {
                     FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid()).child("location").setValue(finalAddress);
-                    FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid()).child("latLng").setValue(latLng);
+                    FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid()).child("latLng").setValue(new com.dev5151.taskit.models.LatLng(latLng.latitude, latLng.longitude));
                     startActivity(new Intent(getActivity(), DashboardActivity.class));
                     getActivity().finish();
                 }
@@ -240,7 +241,7 @@ public class MapFragment extends Fragment {
             String country = addresses.get(0).getCountryCode();
             String postalCode = addresses.get(0).getPostalCode();
 
-            finalAddress = address + "," + area + "," + city;
+            finalAddress = address;
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -18,7 +18,9 @@ import com.dev5151.taskit.Fragments.HomeFragment;
 import com.dev5151.taskit.Fragments.PostTaskFragment;
 import com.dev5151.taskit.Interfaces.BottomNavBarControlInterface;
 import com.dev5151.taskit.Interfaces.FlowControlInterface;
+import com.dev5151.taskit.Interfaces.ItemClickListener;
 import com.dev5151.taskit.R;
+import com.dev5151.taskit.models.Tasks;
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.internal.NavigationMenu;
@@ -30,6 +32,7 @@ public class DashboardActivity extends AppCompatActivity {
     private static BottomNavBarControlInterface flowControlInterface;
     FragmentManager fragmentManager;
     public final static double AVERAGE_RADIUS_OF_EARTH_KM = 6371;
+    public static ItemClickListener itemClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,13 @@ public class DashboardActivity extends AppCompatActivity {
                 intent.putExtra("taskId", taskId);
                 intent.putExtra("flag", i);
                 startActivity(intent);
+            }
+        };
 
+        itemClickListener = new ItemClickListener() {
+            @Override
+            public void onClickTask(Tasks task) {
+                getBottomNavBarControlInterface().goToTask(task.getState(), task.getUnix());
             }
         };
 
@@ -106,6 +115,7 @@ public class DashboardActivity extends AppCompatActivity {
     public static BottomNavBarControlInterface getBottomNavBarControlInterface() {
         return flowControlInterface;
     }
+
 
 }
 
