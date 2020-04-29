@@ -134,7 +134,7 @@ public class OtpFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             uid = mAuth.getUid();
-                            databaseReference.child(uid).child("phoneNumber").setValue(phoneNumber);
+                            databaseReference.child(uid).child("phone").setValue(phoneNumber);
                             Toast.makeText(getContext(), "LOGIN SUCCESS", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getActivity(), LocationActivity.class));
                             getActivity().finish();
