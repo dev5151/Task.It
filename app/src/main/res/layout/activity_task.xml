@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/constraint_layout"
     tools:context=".Activities.TaskActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -18,7 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:titleTextColor="@color/white"/>
+            app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
@@ -125,20 +125,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Attachments"
-                android:visibility="gone"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/img_attachment"
                 android:layout_width="200dp"
                 android:layout_height="200sp"
                 android:layout_gravity="center_horizontal"
-                android:visibility="gone"
                 android:layout_marginTop="8dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_launcher_foreground" />
+                android:src="@drawable/ic_launcher_foreground"
+                android:visibility="gone" />
 
             <View
                 style="@style/Divider"
@@ -189,14 +189,13 @@
                         android:layout_height="40dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
+                        android:progressTint="#e8b923"
+                        android:rating="2"
                         android:scaleX="0.5"
                         android:scaleY="0.5"
-                        android:transformPivotX="0dp"
-                        android:progressTint="#e8b923"
-                        android:rating="2"/>
+                        android:transformPivotX="0dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
 
             <Button
                 android:id="@+id/post"
