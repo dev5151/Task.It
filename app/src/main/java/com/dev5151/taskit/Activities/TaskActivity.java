@@ -1,11 +1,5 @@
 package com.dev5151.taskit.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,6 +8,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -30,6 +32,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingException;
+import com.google.firebase.messaging.Message;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,9 +45,9 @@ import java.util.Locale;
 public class TaskActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    DatabaseReference taskRef, userRef;
-    FirebaseAuth mAuth;
-    String employerUid, taskId;
+    private DatabaseReference taskRef, userRef;
+    private FirebaseAuth mAuth;
+    private String taskId;
     private ConstraintLayout constraintLayout;
     private TextView tvTitle, tvStatus, tvDescription, tvAmt, tvExtra, tvAttachment, tvName, tvMobNo;
     private ImageView imgAttachment;
@@ -53,6 +58,7 @@ public class TaskActivity extends AppCompatActivity {
     private String currentDate;
     private String endDate;
     private Integer daysLeft;
+    private String registrationToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +74,24 @@ public class TaskActivity extends AppCompatActivity {
         });
 
         fetchTaskDetails();
+
+        post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    sendNotification();
+                } catch (FirebaseMessagingException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void initView() {
         toolbar = findViewById(R.id.toolbar);
         mAuth = FirebaseAuth.getInstance();
         taskId = getIntent().getStringExtra("taskId");
-        userRef=FirebaseDatabase.getInstance().getReference().child("users");
+        userRef = FirebaseDatabase.getInstance().getReference().child("users");
         taskRef = FirebaseDatabase.getInstance().getReference().child("tasks").child(taskId);
         tvTitle = findViewById(R.id.tv_title);
         tvDescription = findViewById(R.id.tv_description);
@@ -91,13 +108,14 @@ public class TaskActivity extends AppCompatActivity {
         constraintLayout = findViewById(R.id.constraint_layout);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);}
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
     private void fetchTaskDetails() {
         taskRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                 DataSnapshot snap = dataSnapshot;
+                DataSnapshot snap = dataSnapshot;
                 if (snap.exists()) {
                     Tasks task = snap.getValue(Tasks.class);
                     String employerUid = task.getUid();
@@ -110,12 +128,13 @@ public class TaskActivity extends AppCompatActivity {
                     state = task.getState();
 
                     currentDate = getCurrentDate();
-                   // daysLeft = getCountOfDays(currentDate, endDate);
+                    // daysLeft = getCountOfDays(currentDate, endDate);
 
                     if (state == 0) {
                         post.setEnabled(false);
                         showErrorSnackBar("Oops! Seems like task is already taken by someone");
                     }
+
                     setTask(title, daysLeft, desc, amt, extra, attachment);
 
                     userRef.child(employerUid).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -127,6 +146,7 @@ public class TaskActivity extends AppCompatActivity {
                                 String name = user.getName();
                                 String mobNo = user.getPhone();
                                 Float rating = (float) user.getRating();
+                                registrationToken = user.getRegistrationToken();
 
                                 setCard(name, rating, mobNo);
                             }
@@ -255,6 +275,16 @@ public class TaskActivity extends AppCompatActivity {
         float dayCount = (float) diff / (24 * 60 * 60 * 1000);
 
         return ((int) dayCount);
+    }
+
+    private void sendNotification() throws FirebaseMessagingException {
+        Message message = Message.builder()
+                .setToken(registrationToken)
+                .putData("title","TASK-IT")
+                .putData("message", "Hello")
+                .build();
+        String response = FirebaseMessaging.getInstance().send(message);
+        Toast.makeText(getApplicationContext(), "Successfully sent message: " + response, Toast.LENGTH_LONG).show();
     }
 
 }

@@ -1,20 +1,18 @@
 package com.dev5151.taskit.Fragments;
 
-import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.dev5151.taskit.Activities.LocationActivity;
 import com.dev5151.taskit.Adapters.PostedTasksAdapter;
 import com.dev5151.taskit.R;
 import com.dev5151.taskit.models.Tasks;
@@ -52,6 +50,15 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initView(view);
         initToolbar();
+
+        tvLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), LocationActivity.class));
+                getActivity().finish();
+            }
+        });
+
         return view;
 
     }

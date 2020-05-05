@@ -9,8 +9,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.dev5151.taskit.Fragments.AccountFragment;
 import com.dev5151.taskit.Fragments.FetchTaskFragment;
@@ -21,9 +23,15 @@ import com.dev5151.taskit.Interfaces.FlowControlInterface;
 import com.dev5151.taskit.Interfaces.ItemClickListener;
 import com.dev5151.taskit.R;
 import com.dev5151.taskit.models.Tasks;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.internal.NavigationMenu;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -33,11 +41,14 @@ public class DashboardActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     public final static double AVERAGE_RADIUS_OF_EARTH_KM = 6371;
     public static ItemClickListener itemClickListener;
+    private static final String TAG = "ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        getInstanceId();
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -114,6 +125,29 @@ public class DashboardActivity extends AppCompatActivity {
 
     public static BottomNavBarControlInterface getBottomNavBarControlInterface() {
         return flowControlInterface;
+    }
+
+    private void getInstanceId() {
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+                        FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid()).child("token").setValue(token);
+
+                        // Log and toast
+                        String msg = getString(R.string.msg_token_fmt, token);
+                        Log.d(TAG, msg);
+                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
     }
 
 

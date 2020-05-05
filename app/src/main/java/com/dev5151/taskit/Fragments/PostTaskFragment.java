@@ -86,7 +86,6 @@ public class PostTaskFragment extends Fragment {
         tvTime = view.findViewById(R.id.tv_time);
         tvAttachments = view.findViewById(R.id.tv_attachments);
         toolbar = view.findViewById(R.id.toolbar);
-
         imgAttachments = view.findViewById(R.id.img_attachment);
         post = view.findViewById(R.id.post);
 
@@ -172,7 +171,7 @@ public class PostTaskFragment extends Fragment {
                 SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
                 String currentDate = df.format(c);
                 String currentTime = new SimpleDateFormat("HH:mm:ss aa", Locale.getDefault()).format(new Date());
-                myRef.child("tasks").child(unixTime).setValue(new Tasks(title, description, amount, extra, 0, FirebaseAuth.getInstance().getUid(), date, time, currentTime, currentDate, imageUrl, unixTime)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                myRef.child("tasks").child(unixTime).setValue(new Tasks(title, description, amount, extra, 1, FirebaseAuth.getInstance().getUid(), date, time, currentTime, currentDate, imageUrl, unixTime)).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         edtTitle.setText(null);
