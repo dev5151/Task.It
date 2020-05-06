@@ -3,6 +3,7 @@ package com.dev5151.taskit.Activities;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -33,8 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.FirebaseMessagingException;
-import com.google.firebase.messaging.Message;
+import com.google.firebase.messaging.RemoteMessage;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -78,12 +78,9 @@ public class TaskActivity extends AppCompatActivity {
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    sendNotification();
-                } catch (FirebaseMessagingException e) {
-                    e.printStackTrace();
-                }
+                sendNotification();
             }
+
         });
     }
 
@@ -146,7 +143,7 @@ public class TaskActivity extends AppCompatActivity {
                                 String name = user.getName();
                                 String mobNo = user.getPhone();
                                 Float rating = (float) user.getRating();
-                                registrationToken = user.getRegistrationToken();
+                                registrationToken = user.getToken();
 
                                 setCard(name, rating, mobNo);
                             }
@@ -277,14 +274,18 @@ public class TaskActivity extends AppCompatActivity {
         return ((int) dayCount);
     }
 
-    private void sendNotification() throws FirebaseMessagingException {
-        Message message = Message.builder()
-                .setToken(registrationToken)
-                .putData("title","TASK-IT")
-                .putData("message", "Hello")
+    private void sendNotification() {
+       /* FirebaseMessaging fm = FirebaseMessaging.getInstance();
+        fm.send(new RemoteMessage.Builder(registrationToken)
+                .setMessageId(Integer.toString(123))
+                .addData("title", "TASK")
+                .addData("message", "NEW TASK UPDATE")
+                .build());*/
+        RemoteMessage message = new RemoteMessage.Builder(registrationToken)
+                .addData("title", "850")
                 .build();
-        String response = FirebaseMessaging.getInstance().send(message);
-        Toast.makeText(getApplicationContext(), "Successfully sent message: " + response, Toast.LENGTH_LONG).show();
+        FirebaseMessaging fm = FirebaseMessaging.getInstance();
+        fm.send(message);
     }
 
 }

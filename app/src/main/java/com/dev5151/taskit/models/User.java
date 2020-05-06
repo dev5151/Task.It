@@ -10,13 +10,13 @@ public class User {
     private com.dev5151.taskit.models.LatLng latLng;
     private List<String> taskGivenList;
     private List<String> taskDoneList;
-    private String registrationToken;
+    private String token;
 
     public User() {
 
     }
 
-    public User(String name, String email, String phone, String profilePic, String wallet, int rating, String location, LatLng latLng, List<String> taskGivenList, List<String> taskDoneList, String registrationToken) {
+    public User(String name, String email, String phone, String profilePic, String wallet, int rating, String location, LatLng latLng, List<String> taskGivenList, List<String> taskDoneList, String token) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -27,7 +27,7 @@ public class User {
         this.latLng = latLng;
         this.taskGivenList = taskGivenList;
         this.taskDoneList = taskDoneList;
-        this.registrationToken = registrationToken;
+        this.token = token;
     }
 
     public String getName() {
@@ -110,11 +110,11 @@ public class User {
         this.taskDoneList = taskDoneList;
     }
 
-    public String getRegistrationToken() {
-        return registrationToken;
+    public String getToken() {
+        return token;
     }
 
-    public void setRegistrationToken(String registrationToken) {
-        this.registrationToken = registrationToken;
+    public void setToken(String token) {
+        this.token = token;
     }
 }
