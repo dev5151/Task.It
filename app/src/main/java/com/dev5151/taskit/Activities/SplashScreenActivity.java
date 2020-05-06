@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.dev5151.taskit.R;
@@ -22,7 +24,8 @@ import com.google.firebase.iid.InstanceIdResult;
 public class SplashScreenActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
-    String TAG="instance";
+    String TAG = "instance";
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +33,19 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen_activtiy);
 
         mAuth = FirebaseAuth.getInstance();
+        progressBar = findViewById(R.id.progress_bar);
         int SPLASH_TIME_OUT = 700;
         new android.os.Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (mAuth.getCurrentUser() != null) {
+                    progressBar.setVisibility(View.VISIBLE);
                     fetchUser();
                 } else {
+                    progressBar.setVisibility(View.INVISIBLE);
                     startActivity(new Intent(SplashScreenActivity.this, AuthActivity.class));
                     finish();
                 }
-
-                fetchUser();
             }
         }, SPLASH_TIME_OUT);
     }
@@ -52,9 +56,11 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String location = dataSnapshot.getValue(String.class);
                 if (location != null) {
+                    progressBar.setVisibility(View.INVISIBLE);
                     startActivity(new Intent(SplashScreenActivity.this, DashboardActivity.class));
                     finish();
                 } else {
+                    progressBar.setVisibility(View.INVISIBLE);
                     startActivity(new Intent(SplashScreenActivity.this, LocationActivity.class));
                     finish();
                 }
