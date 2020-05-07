@@ -10,15 +10,18 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.dev5151.taskit.Activities.AuthActivity;
 import com.dev5151.taskit.Interfaces.BottomNavBarControlInterface;
 import com.dev5151.taskit.R;
 import com.dev5151.taskit.models.User;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -37,6 +40,7 @@ public class BottomSheetEditDetails extends BottomSheetDialogFragment {
     DatabaseReference userRef;
     ProgressBar progressBarHorizontal;
     LinearLayout linearLayoutDetails;
+    ConstraintLayout constraintLayout;
 
     public BottomSheetEditDetails(BottomNavBarControlInterface bottomNavBarControlInterface) {
     }
@@ -54,6 +58,7 @@ public class BottomSheetEditDetails extends BottomSheetDialogFragment {
                 Intent intent = new Intent(getActivity(), AuthActivity.class);
                 FirebaseAuth.getInstance().signOut();
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 
@@ -75,6 +80,7 @@ public class BottomSheetEditDetails extends BottomSheetDialogFragment {
         userRef = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid());
         progressBarHorizontal = view.findViewById(R.id.progress_bar_horizontal);
         linearLayoutDetails = view.findViewById(R.id.linearLayout2);
+        constraintLayout = view.findViewById(R.id.constraint_layout);
         DrawableCompat.setTint(progressBarHorizontal.getIndeterminateDrawable(), Color.BLACK);
     }
 
@@ -105,20 +111,20 @@ public class BottomSheetEditDetails extends BottomSheetDialogFragment {
     }
 
     private void submit() {
-        if (edtName.getText().toString() == null || edtEmail.getText().toString().equals(null)) {
-            showErrorSnackBar("Fields can't be empty !");
+        if (edtName.getText().toString() == null || edtName.getText().toString().equals("")) {
+            edtName.setError("Name can't be empty !");
+            //showErrorSnackBar("Name can't be empty !");
+        } else if (edtEmail.getText().toString() == null || edtEmail.getText().toString().equals("")) {
+            edtEmail.setError("Email can't be empty !");
+            //showErrorSnackBar("Email can't be empty !");
+            // Toast.makeText(getContext(), "Email can't be empty !", Toast.LENGTH_LONG).show();
         } else {
             String name = edtName.getText().toString();
             String email = edtEmail.getText().toString();
             userRef.child("name").setValue(name);
             userRef.child("email").setValue(email);
+            dismiss();
         }
-    }
-
-    private void showErrorSnackBar(String message) {
-        Snackbar snackbar = Snackbar.make(getView(), message, Snackbar.LENGTH_LONG);
-        snackbar.setBackgroundTint(Color.RED);
-        snackbar.show();
     }
 
 }
