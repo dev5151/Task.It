@@ -65,7 +65,7 @@ public class TaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
         initView();
-
+        initToolbar();
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,9 +103,15 @@ public class TaskActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.rating_bar);
         post = findViewById(R.id.post);
         constraintLayout = findViewById(R.id.constraint_layout);
+
+    }
+
+    private void initToolbar() {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setNavigationIcon(getDrawable(R.drawable.ic_back));
     }
 
     private void fetchTaskDetails() {

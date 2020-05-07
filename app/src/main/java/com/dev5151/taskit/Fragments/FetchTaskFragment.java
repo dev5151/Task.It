@@ -77,7 +77,6 @@ public class FetchTaskFragment extends Fragment {
                 DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(fetchTaskRecyclerView.getContext(), layoutManager.getOrientation());
                 fetchTaskRecyclerView.addItemDecoration(dividerItemDecoration);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

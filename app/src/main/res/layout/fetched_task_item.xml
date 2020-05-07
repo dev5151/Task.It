@@ -12,8 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Title"
+        android:textColor="@color/black"
         android:textSize="20sp"
-        android:textColor="@color/black" />
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,10 +39,10 @@
             android:layout_marginStart="64dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:gravity="center_vertical"
-            android:text="Distance"
             android:drawableStart="@drawable/ic_gps"
-            android:drawableTint="@color/dark_gray"/>
+            android:drawableTint="@color/dark_gray"
+            android:gravity="center_vertical"
+            android:text="Distance" />
 
 
     </LinearLayout>
@@ -53,8 +54,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:drawableStart="@drawable/ic_rupee"
-        android:gravity="center_vertical"
         android:drawableTint="@color/dark_gray"
+        android:gravity="center_vertical"
         android:text="Money" />
 
 </LinearLayout>
