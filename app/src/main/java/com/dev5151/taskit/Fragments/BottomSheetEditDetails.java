@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.dev5151.taskit.Activities.AuthActivity;
 import com.dev5151.taskit.R;
@@ -70,6 +71,7 @@ public class BottomSheetEditDetails extends BottomSheetDialogFragment {
         userRef = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid());
         progressBarHorizontal = view.findViewById(R.id.progress_bar_horizontal);
         linearLayoutDetails = view.findViewById(R.id.linearLayout2);
+        DrawableCompat.setTint(progressBarHorizontal.getIndeterminateDrawable(), Color.BLACK);
     }
 
     private void fetchUser() {
