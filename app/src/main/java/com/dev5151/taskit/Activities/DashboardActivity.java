@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.dev5151.taskit.Fragments.AccountFragment;
+import com.dev5151.taskit.Fragments.BottomSheetEditDetails;
 import com.dev5151.taskit.Fragments.FetchTaskFragment;
 import com.dev5151.taskit.Fragments.HomeFragment;
 import com.dev5151.taskit.Fragments.PostTaskFragment;
@@ -83,6 +84,11 @@ public class DashboardActivity extends AppCompatActivity {
                 intent.putExtra("taskId", taskId);
                 intent.putExtra("flag", i);
                 startActivity(intent);
+            }
+
+            @Override
+            public void launchBottomSheetEditDetails() {
+                launchFragment(new BottomSheetEditDetails());
             }
         };
 
