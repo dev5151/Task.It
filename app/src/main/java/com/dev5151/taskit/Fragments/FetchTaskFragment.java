@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.dev5151.taskit.Activities.DashboardActivity;
 import com.dev5151.taskit.Adapters.FetchedTaskAdapter;
 import com.dev5151.taskit.R;
 import com.dev5151.taskit.models.Tasks;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,6 +34,7 @@ public class FetchTaskFragment extends Fragment {
     private List<String> taskIdList;
     private List<Tasks> tasksList;
     private RecyclerView fetchTaskRecyclerView;
+    MaterialToolbar toolbar;
 
 
     @Nullable
@@ -39,6 +42,8 @@ public class FetchTaskFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fetch_task, container, false);
         initView(view);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        toolbar.setTitle("Recommended Tasks");
         fetchTasks();
         return view;
     }
@@ -48,6 +53,7 @@ public class FetchTaskFragment extends Fragment {
         taskIdList = new ArrayList<>();
         tasksList = new ArrayList<>();
         fetchTaskRecyclerView = view.findViewById(R.id.fetch_task_recyclerView);
+        toolbar = view.findViewById(R.id.toolbar);
 
     }
 
