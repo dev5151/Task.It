@@ -88,7 +88,8 @@ public class DashboardActivity extends AppCompatActivity {
 
             @Override
             public void launchBottomSheetEditDetails() {
-                launchFragment(new BottomSheetEditDetails());
+                BottomSheetEditDetails bottomSheetEditDetailsFragment = new BottomSheetEditDetails(this);
+                bottomSheetEditDetailsFragment.show(getSupportFragmentManager(), bottomSheetEditDetailsFragment.getTag());
             }
         };
 

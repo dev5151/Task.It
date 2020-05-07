@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.dev5151.taskit.Activities.DashboardActivity;
 import com.dev5151.taskit.R;
 
 public class AccountFragment extends Fragment {
@@ -23,6 +24,12 @@ public class AccountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
         initView(view);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DashboardActivity.getBottomNavBarControlInterface().launchBottomSheetEditDetails();
+            }
+        });
         return view;
     }
 

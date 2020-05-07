@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.dev5151.taskit.Activities.AuthActivity;
+import com.dev5151.taskit.Interfaces.BottomNavBarControlInterface;
 import com.dev5151.taskit.R;
 import com.dev5151.taskit.models.User;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -36,6 +37,9 @@ public class BottomSheetEditDetails extends BottomSheetDialogFragment {
     DatabaseReference userRef;
     ProgressBar progressBarHorizontal;
     LinearLayout linearLayoutDetails;
+
+    public BottomSheetEditDetails(BottomNavBarControlInterface bottomNavBarControlInterface) {
+    }
 
     @Nullable
     @Override
