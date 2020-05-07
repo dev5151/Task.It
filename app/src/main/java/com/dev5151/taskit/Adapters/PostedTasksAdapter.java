@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dev5151.taskit.Activities.DashboardActivity;
 import com.dev5151.taskit.R;
 import com.dev5151.taskit.models.Tasks;
+
 import java.util.ArrayList;
 
 public class PostedTasksAdapter extends RecyclerView.Adapter<PostedTasksAdapter.PostedTaskHolder> {
@@ -24,8 +25,8 @@ public class PostedTasksAdapter extends RecyclerView.Adapter<PostedTasksAdapter.
     private ArrayList<Tasks> taskList;
 
     public PostedTasksAdapter(Context context, ArrayList<Tasks> taskList) {
-        this.context=context;
-        this.taskList=taskList;
+        this.context = context;
+        this.taskList = taskList;
     }
 
     @NonNull
@@ -36,7 +37,6 @@ public class PostedTasksAdapter extends RecyclerView.Adapter<PostedTasksAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull final PostedTaskHolder holder, final int position) {
-
 
 
     }
@@ -53,12 +53,12 @@ public class PostedTasksAdapter extends RecyclerView.Adapter<PostedTasksAdapter.
 
         public PostedTaskHolder(@NonNull View itemView) {
             super(itemView);
-            title=itemView.findViewById(R.id.title);
-            location=itemView.findViewById(R.id.location);
-            amount=itemView.findViewById(R.id.amount);
-            imageView=itemView.findViewById(R.id.imageView);
-            basePrice=itemView.findViewById(R.id.basePrice);
-            description=itemView.findViewById(R.id.description);
+            title = itemView.findViewById(R.id.title);
+            location = itemView.findViewById(R.id.location);
+            amount = itemView.findViewById(R.id.amount);
+            imageView = itemView.findViewById(R.id.imageView);
+            basePrice = itemView.findViewById(R.id.basePrice);
+            description = itemView.findViewById(R.id.description);
 
         }
     }
