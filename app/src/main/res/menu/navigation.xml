@@ -7,7 +7,7 @@
 
     <item
         android:id="@+id/post"
-        android:icon="@drawable/ic_post"
+        android:icon="@drawable/ic_plus"
         android:title="Post" />
 
     <item
