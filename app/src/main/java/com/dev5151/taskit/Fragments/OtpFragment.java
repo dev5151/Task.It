@@ -2,7 +2,6 @@ package com.dev5151.taskit.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
-import com.dev5151.taskit.Activities.DashboardActivity;
 import com.dev5151.taskit.Activities.LocationActivity;
 import com.dev5151.taskit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -135,6 +132,7 @@ public class OtpFragment extends Fragment {
                         if (task.isSuccessful()) {
                             uid = mAuth.getUid();
                             databaseReference.child(uid).child("phone").setValue(phoneNumber);
+                            databaseReference.child(uid).child("uid").setValue(uid);
                             Toast.makeText(getContext(), "LOGIN SUCCESS", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getActivity(), LocationActivity.class));
                             getActivity().finish();
@@ -152,14 +150,4 @@ public class OtpFragment extends Fragment {
         verify.setText("Register");
     }
 
-    private void resendVerificationCode(String phoneNumber,
-                                        PhoneAuthProvider.ForceResendingToken token) {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                phoneNumber,        // Phone number to verify
-                60,                 // Timeout duration
-                TimeUnit.SECONDS,   // Unit of timeout
-                getActivity(),               // Activity (for callback binding)
-                mCallbacks,         // OnVerificationStateChangedCallbacks
-                token);             // ForceResendingToken from callbacks
-    }
 }

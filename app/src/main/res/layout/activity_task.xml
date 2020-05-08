@@ -162,7 +162,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/black"
+                        android:background="#1491E4"
                         android:paddingStart="8dp"
                         android:text="Employer Details"
                         android:textColor="@color/white"
@@ -196,7 +196,14 @@
                         android:transformPivotX="0dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
+            <Button
+                android:id="@+id/chat"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="#1491E4"
+                android:text="Chat"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
             <Button
                 android:id="@+id/post"
                 android:layout_width="match_parent"

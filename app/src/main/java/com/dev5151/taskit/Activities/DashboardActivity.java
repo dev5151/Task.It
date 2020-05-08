@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.dev5151.taskit.Fragments.AccountFragment;
 import com.dev5151.taskit.Fragments.BottomSheetEditDetails;
+import com.dev5151.taskit.Fragments.ChatFragment;
 import com.dev5151.taskit.Fragments.FetchTaskFragment;
 import com.dev5151.taskit.Fragments.HomeFragment;
 import com.dev5151.taskit.Fragments.PostTaskFragment;
@@ -79,6 +80,11 @@ public class DashboardActivity extends AppCompatActivity {
             }
 
             @Override
+            public void launchMessages() {
+                launchFragment(new ChatFragment());
+            }
+
+            @Override
             public void goToTask(int i, String taskId) {
                 Intent intent = new Intent(DashboardActivity.this, TaskActivity.class);
                 intent.putExtra("taskId", taskId);
@@ -119,6 +125,9 @@ public class DashboardActivity extends AppCompatActivity {
                     return true;
                 case R.id.account:
                     getBottomNavBarControlInterface().launchAccount();
+                    return true;
+                case R.id.messages:
+                    getBottomNavBarControlInterface().launchMessages();
                     return true;
             }
 

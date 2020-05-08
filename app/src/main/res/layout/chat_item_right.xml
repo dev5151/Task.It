@@ -8,19 +8,6 @@
     android:layout_gravity="end"
     android:padding="8dp">
 
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circularImageView"
-        android:layout_width="0dp"
-        android:layout_height="4dp"
-        android:src="@drawable/ic_user_pic"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/show_message"
-        app:layout_constraintHorizontal_bias="0.123"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/show_message"
         android:layout_width="wrap_content"
@@ -34,7 +21,6 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/circularImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

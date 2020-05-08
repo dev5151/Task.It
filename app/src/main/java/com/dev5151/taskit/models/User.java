@@ -11,12 +11,13 @@ public class User {
     private List<String> taskGivenList;
     private List<String> taskDoneList;
     private String token;
+    private String uid;
 
     public User() {
 
     }
 
-    public User(String name, String email, String phone, String profilePic, String wallet, int rating, String location, LatLng latLng, List<String> taskGivenList, List<String> taskDoneList, String token) {
+    public User(String name, String email, String phone, String profilePic, String wallet, int rating, String location, LatLng latLng, List<String> taskGivenList, List<String> taskDoneList, String token, String uid) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -28,6 +29,7 @@ public class User {
         this.taskGivenList = taskGivenList;
         this.taskDoneList = taskDoneList;
         this.token = token;
+        this.uid = uid;
     }
 
     public String getName() {
@@ -116,5 +118,13 @@ public class User {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

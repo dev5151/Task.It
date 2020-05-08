@@ -1,5 +1,6 @@
 package com.dev5151.taskit.Activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -53,12 +54,13 @@ public class TaskActivity extends AppCompatActivity {
     private ImageView imgAttachment;
     private CardView cardView;
     private RatingBar ratingBar;
-    private Button post;
+    private Button post, chat;
     private Integer state;
     private String currentDate;
     private String endDate;
     private Integer daysLeft;
     private String registrationToken;
+    String employerUid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,15 @@ public class TaskActivity extends AppCompatActivity {
         });
 
         fetchTaskDetails();
+
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MessageActivity.class);
+                intent.putExtra("uid", employerUid);
+                startActivity(intent);
+            }
+        });
 
         post.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +113,7 @@ public class TaskActivity extends AppCompatActivity {
         tvMobNo = findViewById(R.id.tv_mob_no);
         ratingBar = findViewById(R.id.rating_bar);
         post = findViewById(R.id.post);
+        chat = findViewById(R.id.chat);
         constraintLayout = findViewById(R.id.constraint_layout);
     }
 
@@ -120,7 +132,7 @@ public class TaskActivity extends AppCompatActivity {
                 DataSnapshot snap = dataSnapshot;
                 if (snap.exists()) {
                     Tasks task = snap.getValue(Tasks.class);
-                    String employerUid = task.getUid();
+                    employerUid = task.getUid();
                     String title = task.getTitle();
                     String desc = task.getDesc();
                     String amt = task.getItem_price();

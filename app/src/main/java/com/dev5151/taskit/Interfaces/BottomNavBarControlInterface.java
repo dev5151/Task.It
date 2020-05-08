@@ -9,6 +9,8 @@ public interface BottomNavBarControlInterface {
 
     void launchFetchTask();
 
+    void launchMessages();
+
     void goToTask(int i, String taskId);
 
     void launchBottomSheetEditDetails();
