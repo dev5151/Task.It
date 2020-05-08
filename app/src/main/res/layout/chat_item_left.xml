@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+      <TextView
+        android:id="@+id/show_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:textSize="18sp"
+        android:background="@drawable/background_left"
+        android:layout_marginStart="25dp" />
+
+</LinearLayout>

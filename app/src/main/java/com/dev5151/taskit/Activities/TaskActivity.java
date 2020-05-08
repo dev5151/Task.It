@@ -103,7 +103,6 @@ public class TaskActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.rating_bar);
         post = findViewById(R.id.post);
         constraintLayout = findViewById(R.id.constraint_layout);
-
     }
 
     private void initToolbar() {
