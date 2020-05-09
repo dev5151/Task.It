@@ -2,18 +2,12 @@ package com.dev5151.taskit.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.Toast;
-
 import com.dev5151.taskit.Fragments.AccountFragment;
 import com.dev5151.taskit.Fragments.BottomSheetEditDetails;
 import com.dev5151.taskit.Fragments.ChatFragment;
@@ -21,15 +15,12 @@ import com.dev5151.taskit.Fragments.FetchTaskFragment;
 import com.dev5151.taskit.Fragments.HomeFragment;
 import com.dev5151.taskit.Fragments.PostTaskFragment;
 import com.dev5151.taskit.Interfaces.BottomNavBarControlInterface;
-import com.dev5151.taskit.Interfaces.FlowControlInterface;
 import com.dev5151.taskit.Interfaces.ItemClickListener;
 import com.dev5151.taskit.R;
 import com.dev5151.taskit.models.Tasks;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.internal.NavigationMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
