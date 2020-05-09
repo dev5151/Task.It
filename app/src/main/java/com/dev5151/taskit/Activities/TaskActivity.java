@@ -39,8 +39,10 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class TaskActivity extends AppCompatActivity {
@@ -61,6 +63,8 @@ public class TaskActivity extends AppCompatActivity {
     private Integer daysLeft;
     private String registrationToken;
     String employerUid;
+    DatabaseReference myRef;
+    List<String> taskRequestList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +93,8 @@ public class TaskActivity extends AppCompatActivity {
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendNotification();
+//                sendNotification();
+                addToRequestList(taskId);
             }
 
         });
@@ -115,6 +120,7 @@ public class TaskActivity extends AppCompatActivity {
         post = findViewById(R.id.post);
         chat = findViewById(R.id.chat);
         constraintLayout = findViewById(R.id.constraint_layout);
+        taskRequestList = new ArrayList<>();
     }
 
     private void initToolbar() {
@@ -161,7 +167,6 @@ public class TaskActivity extends AppCompatActivity {
                                 String mobNo = user.getPhone();
                                 Float rating = (float) user.getRating();
                                 registrationToken = user.getToken();
-
                                 setCard(name, rating, mobNo);
                             }
                         }
@@ -303,6 +308,26 @@ public class TaskActivity extends AppCompatActivity {
                 .build();
         FirebaseMessaging fm = FirebaseMessaging.getInstance();
         fm.send(message);
+    }
+
+    private void addToRequestList(final String taskId) {
+        userRef.child(FirebaseAuth.getInstance().getUid()).child("taskRequestList").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                taskRequestList.clear();
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    String taskRequest = dataSnapshot1.getValue(String.class);
+                    taskRequestList.add(taskRequest);
+                }
+                taskRequestList.add(0, taskId);
+               userRef.child(FirebaseAuth.getInstance().getUid()).child("taskRequestList").setValue(taskRequestList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 }

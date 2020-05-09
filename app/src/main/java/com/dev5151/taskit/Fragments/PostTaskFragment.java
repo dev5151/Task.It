@@ -28,14 +28,18 @@ import androidx.fragment.app.Fragment;
 
 import com.dev5151.taskit.R;
 import com.dev5151.taskit.models.Tasks;
+import com.dev5151.taskit.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
@@ -43,8 +47,10 @@ import com.google.firebase.storage.UploadTask;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.UUID;
@@ -69,7 +75,6 @@ public class PostTaskFragment extends Fragment {
     String imageUrl;
     private Uri filePath;
     Bitmap bitmap;
-
     StorageTask uploadTask;
 
     @Nullable
@@ -87,7 +92,6 @@ public class PostTaskFragment extends Fragment {
         toolbar = view.findViewById(R.id.toolbar);
         imgAttachments = view.findViewById(R.id.img_attachment);
         post = view.findViewById(R.id.post);
-
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Post your task");
         /*sharedPreferences = getContext().getSharedPreferences("User Details", Context.MODE_PRIVATE);
@@ -182,7 +186,6 @@ public class PostTaskFragment extends Fragment {
                         imgAttachments.setVisibility(View.GONE);
                     }
                 });
-
             }
         });
         return view;
@@ -242,6 +245,8 @@ public class PostTaskFragment extends Fragment {
 
         }
     }
+
+
 
 
 }

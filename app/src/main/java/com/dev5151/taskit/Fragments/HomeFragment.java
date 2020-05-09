@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -45,6 +46,7 @@ public class HomeFragment extends Fragment {
     String uid;
     FirebaseAuth mAuth;
     String location;
+    List<String> taskRequestList;
 
     @Nullable
     @Override
@@ -71,8 +73,8 @@ public class HomeFragment extends Fragment {
         tvLocation = view.findViewById(R.id.tv_location);
         mAuth = FirebaseAuth.getInstance();
         uid = mAuth.getUid();
+        taskRequestList = new ArrayList<String>();
         userRef = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("location");
-
     }
 
     private void initToolbar() {

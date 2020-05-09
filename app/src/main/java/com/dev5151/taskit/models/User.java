@@ -10,6 +10,7 @@ public class User {
     private com.dev5151.taskit.models.LatLng latLng;
     private List<String> taskGivenList;
     private List<String> taskDoneList;
+    private List<String> taskRequestList;
     private String token;
     private String uid;
 
@@ -17,7 +18,7 @@ public class User {
 
     }
 
-    public User(String name, String email, String phone, String profilePic, String wallet, int rating, String location, LatLng latLng, List<String> taskGivenList, List<String> taskDoneList, String token, String uid) {
+    public User(String name, String email, String phone, String profilePic, String wallet, int rating, String location, LatLng latLng, List<String> taskGivenList, List<String> taskDoneList, List<String> taskRequestList, String token, String uid) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -28,6 +29,7 @@ public class User {
         this.latLng = latLng;
         this.taskGivenList = taskGivenList;
         this.taskDoneList = taskDoneList;
+        this.taskRequestList = taskRequestList;
         this.token = token;
         this.uid = uid;
     }
@@ -110,6 +112,14 @@ public class User {
 
     public void setTaskDoneList(List<String> taskDoneList) {
         this.taskDoneList = taskDoneList;
+    }
+
+    public List<String> getTaskRequestList() {
+        return taskRequestList;
+    }
+
+    public void setTaskRequestList(List<String> taskRequestList) {
+        this.taskRequestList = taskRequestList;
     }
 
     public String getToken() {
