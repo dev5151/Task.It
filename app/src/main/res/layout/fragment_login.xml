@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".Activities.AuthActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_welcome"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="34dp"
@@ -54,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="@color/black"
-        android:drawableRight="@drawable/ic_arrow"
+        android:drawableRight="@drawable/ic_arrow_right"
         android:paddingStart="64dp"
         android:paddingTop="12dp"
         android:paddingEnd="64dp"
