@@ -23,7 +23,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     private List<Chat> chatList;
     private Context context;
-    private String imgUrl;
 
     public MessageAdapter(List<Chat> chatList, Context context) {
         this.chatList = chatList;
