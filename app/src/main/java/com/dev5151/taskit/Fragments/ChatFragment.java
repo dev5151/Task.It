@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.dev5151.taskit.Adapters.UserAdapter;
 import com.dev5151.taskit.R;
 import com.dev5151.taskit.models.ChatList;
 import com.dev5151.taskit.models.User;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,12 +33,15 @@ public class ChatFragment extends Fragment {
     List<User> users;
     DatabaseReference userRef, chatRef, reference;
     RecyclerView recyclerView;
+    MaterialToolbar toolbar;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
         initViews(view);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        toolbar.setTitle("Messages");
 
         reference.child(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -68,6 +73,7 @@ public class ChatFragment extends Fragment {
         userRef = FirebaseDatabase.getInstance().getReference().child("users");
         chatRef = FirebaseDatabase.getInstance().getReference().child("chats");
         reference = FirebaseDatabase.getInstance().getReference().child("chatList");
+        toolbar = view.findViewById(R.id.toolbar);
 
     }
 
