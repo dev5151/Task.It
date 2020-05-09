@@ -8,21 +8,25 @@
     tools:context=".Activities.AuthActivity">
 
     <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:src="@drawable/ic_welcome"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="44dp" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="34dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_marginStart="48dp"
         android:background="@drawable/border"
         android:gravity="center_vertical"
         android:padding="4dp"
         android:text="+91"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/textInputLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textInputLayout"
@@ -33,15 +37,15 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
         android:layout_marginEnd="16dp"
         android:hint="Mobile Number"
         android:textColorHint="@color/black"
-        app:boxStrokeColor="@color/gray"
+        app:boxStrokeColor="@color/dark_gray"
         app:boxStrokeWidth="2dp"
         app:hintEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent">
 

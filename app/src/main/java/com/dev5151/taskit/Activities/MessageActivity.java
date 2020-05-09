@@ -6,13 +6,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.bumptech.glide.Glide;
 import com.dev5151.taskit.Adapters.MessageAdapter;
 import com.dev5151.taskit.R;
@@ -33,7 +38,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MessageActivity extends AppCompatActivity {
 
-    private CircleImageView circleImageView;
+    private ImageView profilePic;
     private TextView username;
     Intent intent;
     androidx.appcompat.widget.Toolbar toolbar;
@@ -71,6 +76,20 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 username.setText(user.getName());
+                ColorGenerator generator = ColorGenerator.MATERIAL;
+                int color1 = generator.getRandomColor();
+                TextDrawable drawable = TextDrawable.builder()
+                        .beginConfig()
+                        .textColor(Color.WHITE)
+                        .useFont(Typeface.DEFAULT)
+                        .fontSize(30) /* size in px */
+                        .bold()
+                        .toUpperCase()
+                        .endConfig()
+                        .buildRect(user.getName().substring(0, 1), color1);
+
+                profilePic.setImageDrawable(drawable);
+
                 readMessage(FirebaseAuth.getInstance().getUid(), uid);
             }
 
@@ -102,15 +121,16 @@ public class MessageActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        //circleImageView = findViewById(R.id.circularImageView);
         username = findViewById(R.id.username);
         toolbar = findViewById(R.id.toolbar);
+        profilePic = findViewById(R.id.profilePic);
         userRef = FirebaseDatabase.getInstance().getReference().child("users");
         recyclerView = findViewById(R.id.recyclerView);
         edtMessage = findViewById(R.id.message);
         send = findViewById(R.id.send);
         chatRef = FirebaseDatabase.getInstance().getReference().child("chats");
         chatList = new ArrayList<>();
+
 
     }
 
