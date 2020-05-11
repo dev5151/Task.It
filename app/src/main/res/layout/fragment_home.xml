@@ -107,10 +107,20 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageView
+                    android:id="@+id/empty"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/ic_empty"
+                    app:layout_constraintBottom_toBottomOf="@+id/recyclerView_trending"
+                    app:layout_constraintEnd_toEndOf="@+id/recyclerView_trending"
+                    app:layout_constraintStart_toStartOf="@+id/recyclerView_trending"
+                    app:layout_constraintTop_toTopOf="@+id/recyclerView_trending" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView_trending"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="200dp"
                     android:layout_margin="8dp"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
