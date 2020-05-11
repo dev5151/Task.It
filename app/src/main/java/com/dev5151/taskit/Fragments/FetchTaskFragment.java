@@ -64,10 +64,10 @@ public class FetchTaskFragment extends Fragment {
                 tasksList.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     Tasks task = dataSnapshot1.getValue(Tasks.class);
-                    /*if (!task.getUid().equals(FirebaseAuth.getInstance().getUid())) {
-                        tasksList.add(0,task);
-                    }*/
-                    tasksList.add(0, task);
+                    if (!task.getUid().equals(FirebaseAuth.getInstance().getUid())) {
+                        tasksList.add(0, task);
+                    }
+
                 }
                 FetchedTaskAdapter adapter = new FetchedTaskAdapter(getActivity(), tasksList, DashboardActivity.itemClickListener);
                 fetchTaskRecyclerView.setAdapter(adapter);
@@ -77,6 +77,7 @@ public class FetchTaskFragment extends Fragment {
                 DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(fetchTaskRecyclerView.getContext(), layoutManager.getOrientation());
                 fetchTaskRecyclerView.addItemDecoration(dividerItemDecoration);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
