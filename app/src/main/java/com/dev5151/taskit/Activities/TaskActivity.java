@@ -317,7 +317,7 @@ public class TaskActivity extends AppCompatActivity {
     }
 
     private void addToRequestList(final String taskId, final String name, final Float rating, final String title, final String imgUrl, final String applicantUid) {
-        userRef.child(FirebaseAuth.getInstance().getUid()).child("taskRequestList").addListenerForSingleValueEvent(new ValueEventListener() {
+        userRef.child(employerUid).child("taskRequestList").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 taskRequestList.clear();
