@@ -18,7 +18,7 @@
         android:layout_gravity="bottom"
         android:backgroundTint="@color/white"
         app:itemIconTint="@color/bottom_navigation_colors"
-        app:itemRippleColor="@color/black"
+        app:itemRippleColor="@color/light_blue"
         app:itemTextColor="@color/bottom_navigation_colors"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/navigation" />
