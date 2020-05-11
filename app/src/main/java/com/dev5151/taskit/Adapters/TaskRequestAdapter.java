@@ -47,11 +47,11 @@ public class TaskRequestAdapter extends RecyclerView.Adapter<TaskRequestAdapter.
         holder.tvName.setText(name);
         holder.ratingBar.setRating(rating);
 
-        if (imgUrl != null) {
+      /*  if (imgUrl != null) {
             Glide.with(context).load(imgUrl).into(holder.img);
         } else {
             holder.img.setImageResource(R.drawable.ic_location_illustration);
-        }
+        }*/
 
     }
 
@@ -63,7 +63,7 @@ public class TaskRequestAdapter extends RecyclerView.Adapter<TaskRequestAdapter.
     public class TaskRequestViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvName, tvTitle;
-        ImageView img;
+        //        ImageView img;
         RatingBar ratingBar;
 
         public TaskRequestViewHolder(@NonNull View itemView) {
@@ -71,7 +71,6 @@ public class TaskRequestAdapter extends RecyclerView.Adapter<TaskRequestAdapter.
 
             tvName = itemView.findViewById(R.id.tv_name);
             tvTitle = itemView.findViewById(R.id.tv_title);
-            img = itemView.findViewById(R.id.img);
             ratingBar = itemView.findViewById(R.id.rating);
 
         }
