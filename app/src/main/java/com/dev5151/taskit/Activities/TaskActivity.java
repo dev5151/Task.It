@@ -25,6 +25,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.dev5151.taskit.R;
+import com.dev5151.taskit.models.TaskRequestModel;
 import com.dev5151.taskit.models.Tasks;
 import com.dev5151.taskit.models.User;
 import com.google.android.material.snackbar.Snackbar;
@@ -64,7 +65,12 @@ public class TaskActivity extends AppCompatActivity {
     private String registrationToken;
     String employerUid;
     DatabaseReference myRef;
-    List<String> taskRequestList;
+    private String title;
+    private String name;
+    private Float rating;
+    private String applicantUid;
+    private String attachment;
+    List<TaskRequestModel> taskRequestList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +100,7 @@ public class TaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                sendNotification();
-                addToRequestList(taskId);
+                addToRequestList(taskId, name, rating, title, attachment, FirebaseAuth.getInstance().getUid());
             }
 
         });
@@ -139,11 +145,11 @@ public class TaskActivity extends AppCompatActivity {
                 if (snap.exists()) {
                     Tasks task = snap.getValue(Tasks.class);
                     employerUid = task.getUid();
-                    String title = task.getTitle();
+                    title = task.getTitle();
                     String desc = task.getDesc();
                     String amt = task.getItem_price();
                     String extra = task.getService_amt();
-                    String attachment = task.getImgUrl();
+                    attachment = task.getImgUrl();
                     endDate = task.getTill_date();
                     state = task.getState();
 
@@ -163,9 +169,9 @@ public class TaskActivity extends AppCompatActivity {
                             DataSnapshot snapshot = dataSnapshot;
                             if (snapshot.exists()) {
                                 User user = snapshot.getValue(User.class);
-                                String name = user.getName();
+                                name = user.getName();
                                 String mobNo = user.getPhone();
-                                Float rating = (float) user.getRating();
+                                rating = (float) user.getRating();
                                 registrationToken = user.getToken();
                                 setCard(name, rating, mobNo);
                             }
@@ -310,17 +316,17 @@ public class TaskActivity extends AppCompatActivity {
         fm.send(message);
     }
 
-    private void addToRequestList(final String taskId) {
+    private void addToRequestList(final String taskId, final String name, final Float rating, final String title, final String imgUrl, final String applicantUid) {
         userRef.child(FirebaseAuth.getInstance().getUid()).child("taskRequestList").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 taskRequestList.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    String taskRequest = dataSnapshot1.getValue(String.class);
+                    TaskRequestModel taskRequest = dataSnapshot1.getValue(TaskRequestModel.class);
                     taskRequestList.add(taskRequest);
                 }
-                taskRequestList.add(0, taskId);
-               userRef.child(FirebaseAuth.getInstance().getUid()).child("taskRequestList").setValue(taskRequestList);
+                taskRequestList.add(0, new TaskRequestModel(taskId, name, rating, title, imgUrl, applicantUid));
+                userRef.child(FirebaseAuth.getInstance().getUid()).child("taskRequestList").setValue(taskRequestList);
             }
 
             @Override
