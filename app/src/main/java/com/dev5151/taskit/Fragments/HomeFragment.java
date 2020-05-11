@@ -104,7 +104,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void fetchRequests() {
-        userRef.child("tasksRequestList").addValueEventListener(new ValueEventListener() {
+        userRef.child("taskRequestList").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 taskRequestList.clear();
