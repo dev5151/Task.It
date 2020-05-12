@@ -11,14 +11,14 @@
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
+        android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:titleTextColor="@color/white" />
+            app:titleTextColor="@color/black" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
@@ -162,7 +162,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#1491E4"
+                        android:background="@color/light_blue"
                         android:paddingStart="8dp"
                         android:text="Employer Details"
                         android:textColor="@color/white"
@@ -201,7 +201,7 @@
                 android:id="@+id/chat"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:backgroundTint="#1491E4"
+                android:backgroundTint="@color/dark_gray"
                 android:text="Chat"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
@@ -210,7 +210,7 @@
                 android:id="@+id/post"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/colorPrimary"
                 android:text="Take the task"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
