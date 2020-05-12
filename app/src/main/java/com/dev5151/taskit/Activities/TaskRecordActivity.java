@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.dev5151.taskit.Adapters.ViewPagerAdapter;
 import com.dev5151.taskit.Fragments.ChatFragment;
@@ -13,6 +14,7 @@ import com.dev5151.taskit.Fragments.CompletedTasksFragment;
 import com.dev5151.taskit.Fragments.GivenTasksFragment;
 import com.dev5151.taskit.Fragments.TasksRequestFragment;
 import com.dev5151.taskit.R;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -25,12 +27,21 @@ public class TaskRecordActivity extends AppCompatActivity {
     private List<String> titleList;
     private TabLayout tabLayout;
     ViewPager viewPager;
+    MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_record);
         initViews();
+        initToolbar();
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         fragmentList.add(new CompletedTasksFragment());
         fragmentList.add(new GivenTasksFragment());
@@ -43,7 +54,6 @@ public class TaskRecordActivity extends AppCompatActivity {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragmentList, titleList);
 
         viewPager.setAdapter(viewPagerAdapter);
-
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -53,9 +63,15 @@ public class TaskRecordActivity extends AppCompatActivity {
         fragmentList = new ArrayList<>();
         titleList = new ArrayList<>();
         viewPager = findViewById(R.id.view_pager);
+        toolbar = findViewById(R.id.toolbar);
     }
 
     private void initToolbar() {
-
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle("Tasks");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationIcon(getDrawable(R.drawable.ic_back));
     }
 }
