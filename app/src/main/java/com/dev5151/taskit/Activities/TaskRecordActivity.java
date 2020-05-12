@@ -32,7 +32,6 @@ public class TaskRecordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task_record);
         initViews();
 
-
         fragmentList.add(new CompletedTasksFragment());
         fragmentList.add(new GivenTasksFragment());
         fragmentList.add(new TasksRequestFragment());
@@ -40,7 +39,6 @@ public class TaskRecordActivity extends AppCompatActivity {
         titleList.add("Completed");
         titleList.add("Posted");
         titleList.add("Requests");
-
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragmentList, titleList);
 
