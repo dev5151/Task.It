@@ -33,11 +33,13 @@ public class CompletedTasksFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_completed_tasks, container, false);
+        initViews(view);
+        fetchCompletedTasks();
         return view;
 
     }
 
-    private void initViews() {
+    private void initViews(View view) {
         userRef = FirebaseDatabase.getInstance().getReference().child("users");
         taskRef = FirebaseDatabase.getInstance().getReference().child("tasks");
         uid = FirebaseAuth.getInstance().getUid();
