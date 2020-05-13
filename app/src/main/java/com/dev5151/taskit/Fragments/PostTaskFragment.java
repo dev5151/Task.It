@@ -187,6 +187,7 @@ public class PostTaskFragment extends Fragment {
         post = view.findViewById(R.id.post);
         myRef = FirebaseDatabase.getInstance().getReference().child("tasks");
         userRef = FirebaseDatabase.getInstance().getReference().child("users");
+        taskList=new ArrayList<>();
     }
 
     private void initToolbar() {
