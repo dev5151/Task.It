@@ -64,42 +64,23 @@ public class PostTaskFragment extends Fragment {
     private ImageView imgAttachments;
     private Button post;
     private DatabaseReference myRef;
-    private String phone;
     private String unixTime;
-    private SharedPreferences sharedPreferences;
-    private int flag = 1;
-    private String creatorId;
     private MaterialToolbar toolbar;
     StorageReference storageReference;
-    int IMAGE_REQUEST = 1;
     String imageUrl;
     private Uri filePath;
     Bitmap bitmap;
     StorageTask uploadTask;
+    private DatabaseReference userRef;
+    private List<String> taskList;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_post_task, container, false);
 
-        edtTitle = view.findViewById(R.id.edt_title);
-        edtDesc = view.findViewById(R.id.edt_description);
-        edtAmt = view.findViewById(R.id.edt_amt);
-        edtExtra = view.findViewById(R.id.edt_extra);
-        tvDate = view.findViewById(R.id.tv_date);
-        tvTime = view.findViewById(R.id.tv_time);
-        tvAttachments = view.findViewById(R.id.tv_attachments);
-        toolbar = view.findViewById(R.id.toolbar);
-        imgAttachments = view.findViewById(R.id.img_attachment);
-        post = view.findViewById(R.id.post);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Post your task");
-        /*sharedPreferences = getContext().getSharedPreferences("User Details", Context.MODE_PRIVATE);
-        phone = sharedPreferences.getString("phone", null);
-
-        creatorId = phone;
-*/
-        myRef = FirebaseDatabase.getInstance().getReference();
+        intiViews(view);
+        initToolbar();
 
         tvDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,7 +155,7 @@ public class PostTaskFragment extends Fragment {
                 SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
                 String currentDate = df.format(c);
                 String currentTime = new SimpleDateFormat("HH:mm:ss aa", Locale.getDefault()).format(new Date());
-                myRef.child("tasks").child(unixTime).setValue(new Tasks(title, description, amount, extra, 1, FirebaseAuth.getInstance().getUid(), date, time, currentTime, currentDate, imageUrl, unixTime)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                myRef.child(unixTime).setValue(new Tasks(title, description, amount, extra, 1, FirebaseAuth.getInstance().getUid(), date, time, currentTime, currentDate, imageUrl, unixTime)).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         edtTitle.setText(null);
@@ -186,9 +167,31 @@ public class PostTaskFragment extends Fragment {
                         imgAttachments.setVisibility(View.GONE);
                     }
                 });
+
+                addToTaskGivenList(unixTime);
             }
         });
         return view;
+    }
+
+    private void intiViews(View view) {
+        edtTitle = view.findViewById(R.id.edt_title);
+        edtDesc = view.findViewById(R.id.edt_description);
+        edtAmt = view.findViewById(R.id.edt_amt);
+        edtExtra = view.findViewById(R.id.edt_extra);
+        tvDate = view.findViewById(R.id.tv_date);
+        tvTime = view.findViewById(R.id.tv_time);
+        tvAttachments = view.findViewById(R.id.tv_attachments);
+        toolbar = view.findViewById(R.id.toolbar);
+        imgAttachments = view.findViewById(R.id.img_attachment);
+        post = view.findViewById(R.id.post);
+        myRef = FirebaseDatabase.getInstance().getReference().child("tasks");
+        userRef = FirebaseDatabase.getInstance().getReference().child("users");
+    }
+
+    private void initToolbar() {
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Post your task");
     }
 
     @Override
@@ -241,12 +244,27 @@ public class PostTaskFragment extends Fragment {
                             Toast.makeText(getActivity(), "" + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
-
-
         }
     }
 
+    private void addToTaskGivenList(final String taskId) {
+        userRef.child(FirebaseAuth.getInstance().getUid()).child("taskGiven").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                taskList.clear();
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    String postedTask = dataSnapshot1.getValue(String.class);
+                    taskList.add(0, postedTask);
+                }
+                taskList.add(taskId);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
 
 }
