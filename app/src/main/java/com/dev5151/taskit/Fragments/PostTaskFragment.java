@@ -257,7 +257,7 @@ public class PostTaskFragment extends Fragment {
                     String postedTask = dataSnapshot1.getValue(String.class);
                     taskList.add(0, postedTask);
                 }
-                taskList.add(taskId);
+                taskList.add(0,taskId);
             }
 
             @Override
