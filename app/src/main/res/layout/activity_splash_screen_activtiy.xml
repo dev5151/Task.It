@@ -8,20 +8,6 @@
     android:background="@color/black"
     tools:context=".Activities.SplashScreenActivity">
 
-    <!--<TextView
-    android:id="@+id/textView6"
-    android:layout_width="190dp"
-    android:layout_height="67dp"
-    android:gravity="center"
-    android:text="Task.It"
-    android:textColor="@color/white"
-    android:textSize="40sp"
-    android:textStyle="bold"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />-->
-
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="0dp"

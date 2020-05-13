@@ -9,7 +9,7 @@ public class User {
     private String location;
     private com.dev5151.taskit.models.LatLng latLng;
     private List<String> taskGiven;
-    private List<String> taskDone;
+    private List<String> taskFetched;
     private List<TaskRequestModel> taskRequestList;
     private String token;
     private String uid;
@@ -18,7 +18,7 @@ public class User {
 
     }
 
-    public User(String name, String email, String phone, String profilePic, String wallet, int rating, String location, LatLng latLng, List<String> taskGiven, List<String> taskDone, List<TaskRequestModel> taskRequestList, String token, String uid) {
+    public User(String name, String email, String phone, String profilePic, String wallet, int rating, String location, LatLng latLng, List<String> taskGiven, List<String> taskFetched, List<TaskRequestModel> taskRequestList, String token, String uid) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -28,7 +28,7 @@ public class User {
         this.location = location;
         this.latLng = latLng;
         this.taskGiven = taskGiven;
-        this.taskDone = taskDone;
+        this.taskFetched = taskFetched;
         this.taskRequestList = taskRequestList;
         this.token = token;
         this.uid = uid;
@@ -106,12 +106,12 @@ public class User {
         this.taskGiven = taskGiven;
     }
 
-    public List<String> getTaskDone() {
-        return taskDone;
+    public List<String> getTaskFetched() {
+        return taskFetched;
     }
 
-    public void setTaskDone(List<String> taskDone) {
-        this.taskDone = taskDone;
+    public void setTaskFetched(List<String> taskFetched) {
+        this.taskFetched = taskFetched;
     }
 
     public List<TaskRequestModel> getTaskRequestList() {
