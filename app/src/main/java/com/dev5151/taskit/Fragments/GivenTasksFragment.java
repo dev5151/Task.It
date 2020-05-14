@@ -8,7 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.dev5151.taskit.Adapters.GivenTasksAdapter;
 import com.dev5151.taskit.R;
 import com.dev5151.taskit.models.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +32,7 @@ public class GivenTasksFragment extends Fragment {
     List<String> taskIdList;
     List<Tasks> tasksList;
     String uid;
+    RecyclerView recyclerView;
 
 
     @Nullable
@@ -45,6 +50,7 @@ public class GivenTasksFragment extends Fragment {
         taskIdList = new ArrayList<>();
         tasksList = new ArrayList<>();
         uid = FirebaseAuth.getInstance().getUid();
+        recyclerView=view.findViewById(R.id.recyclerView);
     }
 
     private void fetchTasksGivenList() {
@@ -66,6 +72,11 @@ public class GivenTasksFragment extends Fragment {
                                 tasksList.add(0, snap.getValue(Tasks.class));
                             }
                         }
+                        recyclerView.setAdapter(new GivenTasksAdapter(getActivity(),tasksList));
+                        LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity());
+                        recyclerView.setLayoutManager(layoutManager);
+                        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
+                        recyclerView.addItemDecoration(dividerItemDecoration);
                     }
 
                     @Override
