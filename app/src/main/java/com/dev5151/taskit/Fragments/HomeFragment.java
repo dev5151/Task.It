@@ -70,7 +70,9 @@ public class HomeFragment extends Fragment {
         tvMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(getActivity(), ));
+                Intent intent = new Intent(getActivity(), TaskRecordActivity.class);
+                intent.putExtra("flag", "1");
+                startActivity(intent);
             }
         });
 

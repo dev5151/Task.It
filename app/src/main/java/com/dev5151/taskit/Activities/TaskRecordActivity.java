@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -28,11 +29,13 @@ public class TaskRecordActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     ViewPager viewPager;
     MaterialToolbar toolbar;
+    String flag=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_record);
+
         initViews();
         initToolbar();
 
@@ -55,6 +58,7 @@ public class TaskRecordActivity extends AppCompatActivity {
 
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
     }
 
     private void initViews() {

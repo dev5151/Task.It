@@ -48,10 +48,8 @@ public class TasksRequestFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 taskRequestList.clear();
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    User user = dataSnapshot1.getValue(User.class);
-                    taskRequestList.addAll(0, user.getTaskRequestList());
-                }
+                User user = dataSnapshot.getValue(User.class);
+                taskRequestList = user.getTaskRequestList();
             }
 
             @Override

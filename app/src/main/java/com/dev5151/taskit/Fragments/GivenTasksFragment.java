@@ -48,7 +48,7 @@ public class GivenTasksFragment extends Fragment {
     }
 
     private void fetchTasksGivenList() {
-        userRef.child("uid").child("taskGiven").addListenerForSingleValueEvent(new ValueEventListener() {
+        userRef.child(uid).child("taskGiven").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 taskIdList.clear();
