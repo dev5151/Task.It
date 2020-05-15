@@ -106,7 +106,7 @@ public class MapFragment extends Fragment {
             public void onMapReady(GoogleMap googleMap) {
                 gMap = googleMap;
 
-                try {
+               /* try {
                     // Customise the styling of the base map using a JSON object defined
                     // in a raw resource file.
                     boolean success = googleMap.setMapStyle(
@@ -120,7 +120,7 @@ public class MapFragment extends Fragment {
                 } catch (Resources.NotFoundException e) {
                     Log.e("MAP", "Can't find style. Error: ", e);
                 }
-
+*/
                 setUpLocation();
             }
         });
@@ -146,7 +146,7 @@ public class MapFragment extends Fragment {
         mMap.addMarker(new MarkerOptions()
                 .position(latLng)
                 .icon(BitmapDescriptorFactory.defaultMarker()).title(title));
-        moveCamera(latLng, 5f);
+        moveCamera(latLng, 10f);
 
     }
 
