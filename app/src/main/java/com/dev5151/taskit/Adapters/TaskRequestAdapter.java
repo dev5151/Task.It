@@ -12,11 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.dev5151.taskit.R;
 import com.dev5151.taskit.models.TaskRequestModel;
 import com.dev5151.taskit.models.Tasks;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -110,7 +108,6 @@ public class TaskRequestAdapter extends RecyclerView.Adapter<TaskRequestAdapter.
 
             tvName = itemView.findViewById(R.id.tv_name);
             tvTitle = itemView.findViewById(R.id.tv_title);
-            //ratingBar = itemView.findViewById(R.id.rating);
             tvDate = itemView.findViewById(R.id.tv_date);
             tvBudget = itemView.findViewById(R.id.tv_budget);
         }

@@ -3,6 +3,7 @@ package com.dev5151.taskit.Activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
@@ -135,7 +136,11 @@ public class TaskActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setNavigationIcon(getDrawable(R.drawable.ic_back));
+        /*toolbar.setTitle("Task Info");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            toolbar.setTitleTextColor(getColor(R.color.colorPrimary));
+        }*/
+        toolbar.setNavigationIcon(getDrawable(R.drawable.ic_back_black));
     }
 
     private void fetchTaskDetails() {
