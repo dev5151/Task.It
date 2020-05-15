@@ -118,7 +118,6 @@
                 android:text="Attachments (If Any)"
                 android:textColor="@color/black" />
 
-
             <ImageView
                 android:id="@+id/img_attachment"
                 android:layout_width="wrap_content"
