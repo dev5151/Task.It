@@ -8,7 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.dev5151.taskit.Adapters.TaskRequestAdapter;
 import com.dev5151.taskit.R;
 import com.dev5151.taskit.models.TaskRequestModel;
 import com.dev5151.taskit.models.User;
@@ -26,7 +30,8 @@ public class TasksRequestFragment extends Fragment {
 
     private DatabaseReference userRef;
     private String uid;
-    private List<TaskRequestModel> taskRequestList;
+    private List<TaskRequestModel> taskRequestList = null;
+    RecyclerView recyclerView;
 
     @Nullable
     @Override
@@ -41,6 +46,7 @@ public class TasksRequestFragment extends Fragment {
         userRef = FirebaseDatabase.getInstance().getReference().child("users");
         uid = FirebaseAuth.getInstance().getUid();
         taskRequestList = new ArrayList<>();
+        recyclerView = view.findViewById(R.id.recyclerView);
     }
 
     private void fetchTaskRequestList() {
@@ -50,6 +56,11 @@ public class TasksRequestFragment extends Fragment {
                 taskRequestList.clear();
                 User user = dataSnapshot.getValue(User.class);
                 taskRequestList = user.getTaskRequestList();
+                recyclerView.setAdapter(new TaskRequestAdapter(taskRequestList, getActivity(), "horizontal_recycler_view"));
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                recyclerView.setLayoutManager(layoutManager);
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
+                recyclerView.addItemDecoration(dividerItemDecoration);
             }
 
             @Override

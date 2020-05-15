@@ -129,7 +129,7 @@ public class HomeFragment extends Fragment {
                 if (taskRequestList.size() == 0) {
                     imageView.setVisibility(View.VISIBLE);
                 } else {
-                    recyclerView.setAdapter(new TaskRequestAdapter(taskRequestList, getActivity()));
+                    recyclerView.setAdapter(new TaskRequestAdapter(taskRequestList, getActivity(),"vertical_recycler_view"));
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
                 }
             }

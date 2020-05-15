@@ -153,7 +153,6 @@ public class TaskActivity extends AppCompatActivity {
                     attachment = task.getImgUrl();
                     endDate = task.getTill_date();
                     state = task.getState();
-
                     currentDate = getCurrentDate();
                     // daysLeft = getCountOfDays(currentDate, endDate);
 
@@ -327,7 +326,7 @@ public class TaskActivity extends AppCompatActivity {
                     taskRequestList.add(taskRequest);
                 }
                 taskRequestList.add(0, new TaskRequestModel(taskId, name, rating, title, imgUrl, applicantUid));
-                userRef.child(FirebaseAuth.getInstance().getUid()).child("taskRequestList").setValue(taskRequestList);
+                userRef.child(employerUid).child("taskRequestList").setValue(taskRequestList);
             }
 
             @Override
