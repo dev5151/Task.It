@@ -1,9 +1,11 @@
 package com.dev5151.taskit.Fragments;
 
+import android.media.ImageReader;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +34,7 @@ public class TasksRequestFragment extends Fragment {
     private String uid;
     private List<TaskRequestModel> taskRequestList = null;
     RecyclerView recyclerView;
+    ImageView imgEmpty;
 
     @Nullable
     @Override
@@ -47,27 +50,38 @@ public class TasksRequestFragment extends Fragment {
         uid = FirebaseAuth.getInstance().getUid();
         taskRequestList = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recyclerView);
+        imgEmpty = view.findViewById(R.id.img_empty);
     }
 
     private void fetchTaskRequestList() {
-        userRef.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+        userRef.child(uid).child("taskRequestList").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 taskRequestList.clear();
-                User user = dataSnapshot.getValue(User.class);
-                taskRequestList = user.getTaskRequestList();
-                recyclerView.setAdapter(new TaskRequestAdapter(taskRequestList, getActivity(), "horizontal_recycler_view"));
-                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                recyclerView.setLayoutManager(layoutManager);
-                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
-                recyclerView.addItemDecoration(dividerItemDecoration);
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    TaskRequestModel taskRequest = dataSnapshot1.getValue(TaskRequestModel.class);
+                    taskRequestList.add(taskRequest);
+                }
+
+                if (taskRequestList.size() == 0) {
+                    imgEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    recyclerView.setAdapter(new TaskRequestAdapter(taskRequestList, getActivity(), "horizontal_recycler_view"));
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                    recyclerView.setLayoutManager(layoutManager);
+                    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
+                    recyclerView.addItemDecoration(dividerItemDecoration);
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
-    }
 
+        });
+
+    }
 }
+
+
