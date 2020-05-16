@@ -103,6 +103,15 @@ public class TaskActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                sendNotification();
                 addToRequestList(taskId, name, rating, title, attachment, FirebaseAuth.getInstance().getUid());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    Snackbar.make(constraintLayout, "You interested in the task has been conveyed", Snackbar.LENGTH_INDEFINITE).setAction("Finish", new View.OnClickListener() {
+                        @Override
+
+                        public void onClick(View view) {
+                            finish();
+                        }
+                    }).setBackgroundTint(getColor(R.color.gold)).show();
+                }
             }
 
         });
