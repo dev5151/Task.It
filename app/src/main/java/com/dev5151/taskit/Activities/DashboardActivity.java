@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+
 import com.dev5151.taskit.Fragments.AccountFragment;
 import com.dev5151.taskit.Fragments.BottomSheetEditDetails;
 import com.dev5151.taskit.Fragments.ChatFragment;
@@ -17,6 +19,7 @@ import com.dev5151.taskit.Fragments.PostTaskFragment;
 import com.dev5151.taskit.Interfaces.BottomNavBarControlInterface;
 import com.dev5151.taskit.Interfaces.ItemClickListener;
 import com.dev5151.taskit.R;
+import com.dev5151.taskit.models.TaskRequestModel;
 import com.dev5151.taskit.models.Tasks;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -94,6 +97,11 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClickTask(Tasks task) {
                 getBottomNavBarControlInterface().goToTask(task.getState(), task.getUnix());
+            }
+
+            @Override
+            public void onClickApplicants(TaskRequestModel taskRequestModel) {
+                ApplicantsActivity.getApplicantsInterface().launchApplicationDetails(taskRequestModel);
             }
         };
 

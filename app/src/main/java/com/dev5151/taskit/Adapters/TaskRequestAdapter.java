@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dev5151.taskit.Interfaces.ItemClickListener;
 import com.dev5151.taskit.R;
 import com.dev5151.taskit.models.TaskRequestModel;
 import com.dev5151.taskit.models.Tasks;
@@ -26,15 +27,17 @@ public class TaskRequestAdapter extends RecyclerView.Adapter<TaskRequestAdapter.
     private List<TaskRequestModel> taskRequestList;
     private Context context;
     private String viewType;
+    private ItemClickListener itemClickListener;
     private final int VIEW_HORIZONTAL = 1;
     private final int VIEW_VERTICAL = 0;
     String date;
     String budget;
 
-    public TaskRequestAdapter(List<TaskRequestModel> taskRequestList, Context context, String viewType) {
+    public TaskRequestAdapter(List<TaskRequestModel> taskRequestList, Context context, String viewType, ItemClickListener itemClickListener) {
         this.taskRequestList = taskRequestList;
         this.context = context;
         this.viewType = viewType;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -77,6 +80,13 @@ public class TaskRequestAdapter extends RecyclerView.Adapter<TaskRequestAdapter.
                         holder.tvTitle.setText(title);
                         holder.tvDate.setText(date);
                         holder.tvBudget.setText(budget);
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                itemClickListener.onClickApplicants(taskRequestModel);
+                            }
+                        });
                     }
 
                     @Override

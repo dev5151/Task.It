@@ -331,6 +331,8 @@ public class TaskActivity extends AppCompatActivity {
     }
 
     private void addToRequestList(final String taskId, final String name, final Float rating, final String title, final String imgUrl, final String applicantUid) {
+
+        final TaskRequestModel taskRequestModel = new TaskRequestModel(taskId, name, rating, title, imgUrl, applicantUid);
         userRef.child(employerUid).child("taskRequestList").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -339,8 +341,13 @@ public class TaskActivity extends AppCompatActivity {
                     TaskRequestModel taskRequest = dataSnapshot1.getValue(TaskRequestModel.class);
                     taskRequestList.add(taskRequest);
                 }
-                taskRequestList.add(0, new TaskRequestModel(taskId, name, rating, title, imgUrl, applicantUid));
-                userRef.child(employerUid).child("taskRequestList").setValue(taskRequestList);
+                if (taskRequestList.contains(taskRequestModel)) {
+                    userRef.child(employerUid).child("taskRequestList").setValue(taskRequestList);
+                } else {
+                    taskRequestList.add(taskRequestModel);
+                    userRef.child(employerUid).child("taskRequestList").setValue(taskRequestList);
+                }
+
             }
 
             @Override
